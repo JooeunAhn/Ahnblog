@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+from os.path import abspath, dirname
+from glob import glob
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'bootstrap3',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -56,7 +59,9 @@ ROOT_URLCONF = 'Ahnblog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+        os.path.join(BASE_DIR, 'Ahnblog', 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,3 +125,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS=[]
+
+PROJECT_STATIC_ROOT=os.path.join(BASE_DIR, 'Ahnblog', 'static')
+
+if glob(os.path.join(PROJECT_STATIC_ROOT, '*')):
+    STATICFILES_DIRS.append(PROJECT_STATIC_ROOT)
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+

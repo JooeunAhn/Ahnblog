@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+{{post.title}}
+{{post.photo.url}}
+<img src='{{post.photo.url}}'>
+{{post.content}}
+{% endblock %}
